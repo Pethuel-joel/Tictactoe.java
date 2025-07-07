@@ -56,3 +56,61 @@ private JPanel createWelcomeScreen() {
             resetGame();
             cardLayout.show(mainPanel, "Game");
         });
+welcome.add(Box.createVerticalStrut(20));
+
+        welcome.add(continueBtn);
+
+
+        return welcome;
+
+    }
+
+
+
+    private JPanel createGameScreen() {
+
+        JPanel gamePanel = new JPanel(new BorderLayout());
+
+
+
+        JPanel boardPanel = new JPanel(new GridLayout(3, 3));
+
+        Font btnFont = new Font("Arial", Font.BOLD, 40);
+
+
+
+        for (int i = 0; i < 3; i++) {
+
+            for (int j = 0; j < 3; j++) {
+
+                JButton btn = new JButton("");
+
+                btn.setFont(btnFont);
+
+                final int row = i, col = j;
+
+                btn.addActionListener(e -> handleMove(btn, row, col));
+
+                buttons[i][j] = btn;
+
+                boardPanel.add(btn);
+
+            }
+
+        }
+
+
+
+        JButton restartBtn = new JButton("Restart");
+
+        restartBtn.addActionListener(e -> {
+
+            resetGame();
+
+        });
+
+
+
+        JPanel bottomPanel = new JPanel();
+
+        bottomPanel.add(restartBtn);                                                                                                                                                       

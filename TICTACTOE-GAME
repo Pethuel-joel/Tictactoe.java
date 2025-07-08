@@ -121,3 +121,32 @@ gamePanel.add(boardPanel, BorderLayout.CENTER);
                 symbol.equals(buttons[i][1].getText()) &&
                 symbol.equals(buttons[i][2].getText()))
                 return true;
+}
+
+        // Diagonals
+        if (symbol.equals(buttons[0][0].getText()) &&
+            symbol.equals(buttons[1][1].getText()) &&
+            symbol.equals(buttons[2][2].getText()))
+            return true;
+
+        if (symbol.equals(buttons[0][2].getText()) &&
+            symbol.equals(buttons[1][1].getText()) &&
+            symbol.equals(buttons[2][0].getText()))
+            return true;
+
+        return false;
+    }
+
+    private void resetGame() {
+        xTurn = true;
+        moves = 0;
+        for (JButton[] row : buttons)
+            for (JButton btn : row)
+                btn.setText("");
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new TicTacToe().setVisible(true));
+    }
+}
+

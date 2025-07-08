@@ -114,3 +114,32 @@ welcome.add(Box.createVerticalStrut(20));
         JPanel bottomPanel = new JPanel();
 
         bottomPanel.add(restartBtn);                                                                                                                                                       
+gamePanel.add(boardPanel, BorderLayout.CENTER);
+        gamePanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        return gamePanel;
+    }
+
+    private void handleMove(JButton btn, int row, int col) {
+        if (!btn.getText().isEmpty()) return;
+
+        btn.setText(xTurn ? "X" : "O");
+        moves++;
+
+        if (checkWinner()) {
+            String winner = xTurn ? player1Name : player2Name;
+            JOptionPane.showMessageDialog(this, winner + " wins!");
+            resetGame();
+        } else if (moves == 9) {
+            JOptionPane.showMessageDialog(this, "It's a draw!");
+            resetGame();
+        } else {
+            xTurn = !xTurn;
+        }
+    }
+
+    private boolean checkWinner() {
+        String symbol = xTurn ? "X" : "O";
+
+        // Rows and columns
+        for (int i = 0; i < 3; i++) {       

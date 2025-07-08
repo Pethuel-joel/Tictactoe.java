@@ -27,3 +27,32 @@ public class TicTacToe extends JFrame {
         add(mainPanel);
         cardLayout.show(mainPanel, "Welcome");
     }
+  private JPanel createWelcomeScreen() {
+        JPanel welcome = new JPanel();
+        welcome.setLayout(new BoxLayout(welcome, BoxLayout.Y_AXIS));
+        welcome.setBackground(Color.WHITE);
+
+        JLabel title = new JLabel("Welcome to Tic Tac Toe Deluxe!");
+        title.setFont(new Font("SansSerif", Font.BOLD, 20));
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        welcome.add(Box.createVerticalStrut(40));
+        welcome.add(title);
+        welcome.add(Box.createVerticalStrut(30));
+
+        JPanel inputPanel = new JPanel(new GridLayout(2, 2, 10, 10));
+        inputPanel.add(new JLabel("Player 1 Name (X):"));
+        inputPanel.add(player1Field);
+        inputPanel.add(new JLabel("Player 2 Name (O):"));
+        inputPanel.add(player2Field);
+
+        welcome.add(inputPanel);
+
+        JButton continueBtn = new JButton("Continue to Game");
+        continueBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        continueBtn.addActionListener(e -> {
+            player1Name = player1Field.getText().trim().isEmpty() ? "Player 1" : player1Field.getText().trim();
+            player2Name = player2Field.getText().trim().isEmpty() ? "Player 2" : player2Field.getText().trim();
+            resetGame();
+            cardLayout.show(mainPanel, "Game");
+        });
